@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "backgroundTextStyle": "dark",
+  "disableScroll": true,
+  "usingComponents": {
+    "van-dialog": "../../miniprogram_npm/vant-weapp/dialog/index",
+    "van-toast": "../../miniprogram_npm/vant-weapp/toast/index"
+  }
+}

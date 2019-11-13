@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "收藏房源",
+  "usingComponents": {
+    "van-row": "../../miniprogram_npm/vant-weapp/row/index",
+    "van-col": "../../miniprogram_npm/vant-weapp/col/index",
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon/index"
+  },
+  "disableScroll": true
+}

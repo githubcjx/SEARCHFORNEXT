@@ -1,0 +1,343 @@
+<view class="container">
+  <scroll-view scroll-y="{{true}}" style="height: 92%;" enable-back-to-top="{{true}}">
+    <view class="header" wx:if="{{rentType == 0}}">
+      <view class="sort">
+        <view class="sort-item" data-type="1" bindtap="selectType">
+          <image src="../../images/icon/整租.png"></image>
+          <view class="sort-text">整租</view>
+        </view>
+        <view class="sort-item" data-type="2" bindtap="selectType">
+          <image src="../../images/icon/合租.png"></image>
+          <view class="sort-text">合租</view>
+        </view>
+      </view>
+    </view>
+
+    <van-toast id="van-toast" duration="{{2000}}"/>
+
+    <view class="whole" wx:if="{{rentType != 0}}">
+      <view class="upload-image" bindtap="chooseImage"></view>
+      <view class="info">
+        <view class="title">基本信息</view>
+        <view class="hr"></view>
+        <view class="info-item">
+          <view class="estate">小区</view>
+          <van-field
+            value="{{ estateName }}"
+            placeholder="填写小区名称"
+            border="{{ false }}"
+            input-align="center"
+            custom-style="font-size:36rpx"
+            bind:blur="bindBlur"
+            data-type="areaName"
+            required="{{true}}"
+          />
+        </view>
+        <view class="hr"></view>
+        <view class="info-item">
+          <view class="estate">建筑面积（㎡）</view>
+          <van-field
+            value="{{ houseArea }}"
+            placeholder="请填写"
+            border="{{ false }}"
+            input-align="center"
+            custom-style="font-size:36rpx"
+            bind:blur="bindBlur"
+            data-type="area"
+            required="{{true}}"
+          />
+        </view>
+        <view class="hr"></view>
+        <view class="column-items">
+          <view class="info-item" data-type="houseType" bindtap="handleSelect">
+            <view class="notice">房屋户型</view>
+            <view class="info-text">{{ houseType }}</view>
+          </view>
+          <view class="info-item" data-type="direction" bindtap="handleSelect">
+            <view class="notice">朝向</view>
+            <view class="info-text">{{ direction }}</view>
+          </view>
+          <view class="info-item" data-type="floor" bindtap="handleSelect">
+            <view class="notice">楼层</view>
+            <view class="info-text">{{ floor }}</view>
+          </view>
+        </view>
+        <view class="hr"></view>
+        <view class="column-items">
+          <view class="info-item" data-type="parking" bindtap="handleSelect">
+            <view class="notice">车位</view>
+            <view class="info-text">{{ parking }}</view>
+          </view>
+          <view class="info-item" data-type="elevator" bindtap="handleSelect">
+            <view class="notice">电梯</view>
+            <view class="info-text">{{ elevator }}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="info">
+        <view class="title">联系人</view>
+        <view class="hr"></view>
+        <view class="info-item">
+          <van-field
+            value="{{ name }}"
+            placeholder="请填写姓名"
+            border="{{ false }}"
+            input-align="center"
+            custom-style="font-size:36rpx"
+            bind:blur="bindBlur"
+            data-type="name"
+            required="{{true}}"
+          />
+        </view>
+        <view class="hr"></view>
+        <view class="info-item">
+          <view class="notice">您的身份是</view>
+          <view class="info-text">个人房东</view>
+        </view>
+        <view class="hr"></view>
+        <view class="info-item">
+          <view class="estate">为保护隐私，您的真实号码将被隐藏</view>
+          <van-field
+            value="{{ phone }}"
+            placeholder="加密手机号码"
+            border="{{ false }}"
+            input-align="center"
+            custom-style="font-size:36rpx"
+            bind:blur="bindBlur"
+            data-type="phone"
+            required="{{true}}"
+          />
+        </view>
+      </view>
+
+      <view class="info">
+        <view class="title">入住信息</view>
+        <view class="hr"></view>
+        <view class="column-items">
+          <view class="info-item" data-type="houseTime" bindtap="handleSelect">
+            <view class="notice">看房时间</view>
+            <view class="info-text">{{ houseTime }}</view>
+          </view>
+          <view class="info-item" data-type="peopleNum" bindtap="handleSelect">
+            <view class="notice">宜住人数</view>
+            <view class="info-text">{{ peopleNum }}</view>
+          </view>
+          <view class="info-item" data-type="settleTime" bindtap="handleSelect">
+            <view class="notice">入住时间</view>
+            <view class="info-text">{{ settleTime }}</view>
+          </view>
+        </view>
+        <view class="hr"></view>
+      </view>
+
+      <view class="info">
+        <view class="title">租金详情</view>
+        <view class="hr"></view>
+        <view class="info-item">
+          <view class="estate">月租金</view>
+          <van-field
+            value="{{ rent }}"
+            placeholder="请填写"
+            border="{{ false }}"
+            input-align="center"
+            custom-style="font-size:36rpx"
+            bind:blur="bindBlur"
+            data-type="rent"
+            required="{{true}}"
+          />
+        </view>
+        <view class="hr"></view>
+        <van-tag
+            wx:for="{{rentTypes}}"
+            wx:key="index"
+            size="large"
+            round
+            color="{{ rentTypeIndex == index ? '#42cf48' : '#eee'}}" 
+            text-color="{{ rentTypeIndex == index ? '#fff' : '#999'}}"
+            custom-class="tag-style"
+            bindtap="onSelectRentTypes"
+            data-index="{{index}}"
+          >
+            {{ item }}
+          </van-tag>
+        <view class="hr"></view>
+        <view data-type="cost">
+          <view class="notice" style="margin-left:20rpx;color:#000">租金包含费用(物业费等)</view>
+          <van-tag
+            wx:for="{{cost}}"
+            wx:key="index"
+            size="large"
+            round
+            color="{{ item.isSelected ? '#42cf48' : '#eee'}}"
+            text-color="{{ item.isSelected ? '#fff' : '#999'}}"
+            custom-class="tag-style"
+            bindtap="onSelectRent"
+            data-index="{{index}}"
+          >
+            {{ item.item }}
+          </van-tag>
+        </view>
+      </view>
+
+      <view class="info">
+        <view class="title">装修情况</view>
+        <view class="decorate-item">
+          <van-tag
+            wx:for="{{decorate}}"
+            wx:key="index"
+            size="large" 
+            round 
+            color="{{ decorateIndex == index ? '#42cf48' : '#eee'}}" 
+            text-color="{{ decorateIndex == index ? '#fff' : '#999'}}"
+            style="margin: 0 10rpx"
+            bindtap="onSelectDecorate"
+            data-index="{{index}}"
+          >
+            {{ item }}
+          </van-tag>
+        </view>
+
+        <view class="title">房屋配置</view>
+        <view class="config-item">
+          <van-tag
+            wx:for="{{houseConfigs}}"
+            wx:key="index"
+            size="large" 
+            round 
+            color="{{ item.isSelected ? '#42cf48' : '#eee'}}" 
+            text-color="{{ item.isSelected ? '#fff' : '#999'}}"
+            custom-class="tag-style"
+            bindtap="onSelectConfig"
+            data-index="{{index}}"
+          >
+            {{ item.config }}
+          </van-tag>
+        </view>
+
+        <view class="title">房屋亮点</view>
+        <view class="bright-item">
+          <van-tag
+            wx:for="{{houseBright}}"
+            wx:key="index"
+            size="large" 
+            round 
+            color="{{ item.isSelected ? '#42cf48' : '#eee'}}" 
+            text-color="{{ item.isSelected ? '#fff' : '#999'}}"
+            style="margin: 0 10rpx"
+            bindtap="onSelectBright"
+            data-index="{{index}}"
+          >
+            {{ item.bright }}
+          </van-tag>
+        </view>
+
+        <view class="title">出租要求</view>
+        <view class="require-item">
+          <van-tag
+            wx:for="{{houseRequire}}"
+            wx:key="index"
+            size="large" 
+            round 
+            color="{{ item.isSelected ? '#42cf48' : '#eee'}}" 
+            text-color="{{ item.isSelected ? '#fff' : '#999'}}"
+            custom-class="tag-style"
+            bindtap="onSelectRequire"
+            data-index="{{index}}"
+          >
+            {{ item.req }}
+          </van-tag>
+        </view>
+
+        <view class="title">详细介绍</view>
+        <view>
+          <textarea data-type="textarea" bindblur="bindBlur" value="{{textareaValue}}" class="textarea" placeholder-class="placeholder-style" placeholder="可以介绍一下房源亮点，可以入住的时间和对租客的要求等，详细的描述会大大增加快速出租的机会！请不要在描述中包含：1.任意形式的联系方式及变型词；2.与房源或相关配套描述无关的内容；3.违反国家法律法规的内容等" />
+        </view>
+      </view>
+    </view>
+
+    <van-popup
+      show="{{ show }}"
+      position="bottom"
+      custom-style="height: 50%;"
+      bind:close="hideSelect"
+    >
+      <van-area
+        wx:if="{{ bindType == 'houseType' }}"
+        area-list="{{ houseTypes }}"
+        title="房屋户型"
+        columns-num="{{ 3 }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-picker
+        wx:if="{{ bindType == 'direction' }}"
+        show-toolbar
+        title="朝向"
+        columns="{{ directions }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-picker
+        wx:if="{{ bindType == 'floor' }}"
+        show-toolbar
+        title="楼层"
+        columns="{{ floors }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-picker
+        wx:if="{{ bindType == 'parking' }}"
+        show-toolbar
+        title="请选择车位"
+        columns="{{ parkings }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-picker
+        wx:if="{{ bindType == 'elevator' }}"
+        show-toolbar
+        title="请选择电梯"
+        columns="{{ elevators }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-picker
+        wx:if="{{ bindType == 'houseTime' }}"
+        show-toolbar
+        title="请选择看房时间"
+        columns="{{ houseTimes }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-picker
+        wx:if="{{ bindType == 'peopleNum' }}"
+        show-toolbar
+        title="请选择宜住人数"
+        columns="{{ peopleNums }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+      <van-datetime-picker
+        wx:if="{{ bindType == 'settleTime' }}"
+        type="date"
+        value="{{ currentDate }}"
+        min-date="{{ minDate }}"
+        bind:cancel="hideSelect"
+        bind:confirm="onConfirm"
+      />
+    </van-popup>
+  </scroll-view>
+  <view wx:if="{{rentType != 0}}" class="confirm-publish" bindtap="onConfirmPublish">确认发布</view>
+  <van-dialog
+      use-slot
+      show="{{ dialogShow }}"
+      show-cancel-button
+      bind:close="onClose"
+      bind:confirm="onPublish"
+      confirmButtonText="立即发布"
+      cancelButtonText="返回修改"
+    >
+    <view class="dialogText">确认发布？</view>
+  </van-dialog>
+</view>

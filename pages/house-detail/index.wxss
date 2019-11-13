@@ -1,0 +1,115 @@
+
+.container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.container .header,
+.container .header {
+    width: 100%;
+}
+.container .header .swiper .slide-image {
+    width: 100%;
+    /* height: 300rpx; */
+}
+
+/* content */
+
+.container .content {
+    width: 100%;
+}
+.container .content .house-price {
+    width: 90%;
+    padding: 10rpx 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+.container .content .house-price .price {
+    color: #f00;
+    font-size: 50rpx;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 30rpx;
+}
+.container .content .house-price .unit {
+    display: inline-block;
+    color: #f00;
+    font-size: 30rpx;
+}
+.container .content .house-price .pay {
+    display: inline-block;
+    margin-left: 50%;
+    color: #999;
+    font-size: 30rpx;
+}
+.container .content .house-info {
+    width: 100%;
+}
+.container .content .house-info .bottom {
+    width: 90%;
+    padding: 30rpx 0;
+    border-bottom: 1px solid #eee;
+    margin: 0 auto;
+}
+.container .content .house-info .space {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.container .content .house-info .space .s_item .info{
+    font-size: 30rpx;
+    margin-bottom: 10rpx;
+    color: #666;
+}
+.container .content .house-info .space .s_item .info_v{
+    font-size: 25rpx;
+    color: #999;
+}
+.container .content .house-info .condition .c_item {
+    display: inline-block;
+    /* width: 125rpx; */
+    height: 45rpx;
+    font-size: 25rpx;
+    border: 1px solid #ddd;
+    padding: 5rpx 10rpx;
+    color: rgb(128, 127, 127);
+    margin: 0 10rpx;
+    text-align: center;
+    line-height: 45rpx;
+}
+.content .notice_title {
+    font-size: 44rpx;
+    font-weight: bold;
+    margin-bottom: 30rpx;
+}
+.content .notice .notice_detail view{
+    font-size: 30rpx;
+    color: #999;
+    margin: 10rpx 0;
+}
+.content .config .config_box {
+    width: 100%;
+    margin: 0 auto;
+}
+.content .config .config_item {
+    display: inline-block;
+    width: 70rpx;
+    height: 70rpx;
+    margin: 10rpx 20rpx;
+}
+.content .config_item image {
+    width: 100%;
+    height: 100%;
+}
+.content .config_item view {
+    width: 100%;
+    color: #999;
+    font-size: 22rpx;
+    text-align: center;
+}
+
+.liking {
+  color: #f00;
+}

@@ -1,0 +1,76 @@
+<view class="container">
+  <scroll-view scroll-y="{{true}}" style="height: 90%;" enable-back-to-top="{{true}}">
+    <view class="header">
+      <view class="swiper">
+        <swiper indicator-dots="{{true}}" circular="{{true}}" autoplay="{{true}}" interval="{{5000}}">
+          <view wx:for="{{imgUrls}}" wx:key="index" data-idx="{{index}}">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" />
+            </swiper-item>
+          </view>
+        </swiper>
+      </view>
+    </view>
+    <view class="content">
+      <view class="house-price">
+        <view class="price">{{houseInfo.rent}}</view>
+        <view class="unit">元/月</view>
+        <view class="pay">{{houseInfo.rent_type}}</view>
+      </view>
+      <view class="house-info">
+        <view class="title bottom">{{houseInfo.house_type}}·{{houseInfo.area_name}}{{houseInfo.type}}</view>
+        <view class="space bottom">
+          <view class="s_item">
+            <view class="info">{{houseInfo.type}}</view>
+            <view class="info_v">房型</view>
+          </view>
+          <view class="s_item">
+            <view class="info">{{houseInfo.area}}㎡</view>
+            <view class="info_v">面积</view>
+          </view>
+          <view class="s_item">
+            <view class="info">{{houseInfo.direction}}</view>
+            <view class="info_v">朝向</view>
+          </view>
+          <view class="s_item">
+            <view class="info">{{houseInfo.floor}}</view>
+            <view class="info_v">楼层</view>
+          </view>
+        </view>
+        <view class="condition bottom">
+          <view class="c_item" wx:for="{{condition}}" wx:key="index">{{item}}</view>
+        </view>
+        <view class="notice bottom">
+          <view class="notice_title">租住须知</view>
+          <view class="notice_detail">
+            <view>看房时间 {{houseInfo.look_time}}</view>
+            <view>最早入住 {{houseInfo.settle_time}}</view>
+          </view>
+        </view>
+        <view class="config bottom">
+          <view class="notice_title">房屋配置</view>
+          <view class="config_box">
+            <view class="config_item" wx:for="{{ configures }}" wx:key="index">
+              <image src="{{ configure[item] }}" />
+              <view>{{ item }}</view>
+            </view>
+          </view>
+        </view>
+        <view class="landlord bottom">
+          <view class="notice_title">房东信息</view>
+          <view>{{houseInfo.landlord[0]}}{{houseInfo.gender == 1 ? '先生' : '女士'}}</view>
+        </view>
+      </view>
+    </view>
+    
+  </scroll-view>
+  <van-goods-action style="position: fixed; bottom: 0;">
+    <van-goods-action-icon icon="chat-o" text="客服" />
+    <van-goods-action-icon bind:click="onLikeHouse" icon="like" text="{{houseInfo.like == 1 ? '已收藏' : '收藏'}}" icon-class="{{houseInfo.like == 1 ? 'liking' : ''}}"/>
+    <van-goods-action-icon icon="shop-o" text="店铺" />
+    <van-goods-action-button bind:click="onlineChat" color="linear-gradient(to right, #ffd01e, #ff8917);" text="在线聊" type="warning" />
+    <van-goods-action-button bind:click="callLandlord" data-phone="{{houseInfo.phone}}" color="linear-gradient(to right, #ff6034, #ee0a24);" text="打电话" />
+  </van-goods-action>
+
+  <van-toast id="van-toast" duration="1000" onClose="backToPage"/>
+</view>

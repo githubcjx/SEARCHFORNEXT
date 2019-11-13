@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="header">
+    <view class="sort">
+      <view class="sort-item">
+        <image src="../../images/icon/整租.png"></image>
+        <view class="sort-text">整租</view>
+      </view>
+      <view class="sort-item">
+        <image src="../../images/icon/合租.png"></image>
+        <view class="sort-text">合租</view>
+      </view>
+    </view>
+  </view>
+  <view class="select-type"></view>
+  <view class="content">
+    <scroll-view scroll-y="{{true}}" style="height: 100%; background-color: #eee;" enable-back-to-top="{{true}}">
+      <view class="house-list" wx:for="{{list}}" wx:key="{{item.house_id}}">
+        <view class="house-item" bindtap="houseDetail" data-houseid="{{item.house_id}}">
+          <view class="house-image">
+            <image src="../../images/house.png" />
+          </view>
+          <view class="house-title">
+            <view class="title">{{item.house_type}} · {{item.area_name}} {{item.type}}</view>
+            <view class="price">{{item.rent}}元/月</view>
+            <view class="space">{{item.area}}㎡ · {{item.direction}}</view>
+            <view class="info">
+              <view class="info-item">{{item.decorate}}</view>
+              <view class="info-item">{{item.rent_type}}</view>
+              <view class="info-item" style="background-color:rgb(193, 241, 170);color:#42cf48">精选房源</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{list.length == 0}}" class="nohouse">暂无房源</view>
+    </scroll-view>
+  </view>
+</view>

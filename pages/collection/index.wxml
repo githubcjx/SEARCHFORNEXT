@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="content">
+    <scroll-view scroll-y="{{true}}" style="height: 100%; background-color: #eee;" enable-back-to-top="{{true}}">
+      <view class="house-list" wx:for="{{list}}" wx:key="{{item.house_id}}">
+        <view class="house-item">
+          <view class="house-image">
+            <image src="../../images/house.png" />
+          </view>
+          <view class="house-title">
+            <view class="title">{{item.house_type}} · {{item.area_name}} {{item.type}}</view>
+            <view class="price">{{item.rent}}元/月</view>
+            <view class="space">{{item.area}}㎡ · {{item.direction}}</view>
+            <view>
+              <van-icon 
+                name="like" 
+                color="{{item.like == 1 ? '#f20' : '#ddd'}}"
+                custom-style="float: right; right: 30rpx"
+                bind:click="onCollection"
+                data-houseid="{{item.house_id}}"
+                data-index="{{index}}"
+              />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{list.length == 0}}" class="nohouse">暂无收藏房源</view>
+    </scroll-view>
+  </view>
+</view>
