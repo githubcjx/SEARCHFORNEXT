@@ -3,7 +3,6 @@ var util = require('../../utils/util.js');
 
 Page({
   data: {
-    num: 6,
     list: []
   },
   houseDetail(e) {
@@ -17,27 +16,13 @@ Page({
       }
     });
   },
-  onLoad: function () {
-    util.request(app.globalData.host + '/house/list', {}, 'POST').then(res => {
+  onLoad: function() {
+    util.request(app.globalData.host + '/house/getRecord', {}, 'POST').then(res => {
       var list = res.data;
+      console.log(res)
       this.setData({
         list
       })
     })
-  },
-  onShow: function () {
-    util.request(app.globalData.host + '/house/list', {}, 'POST').then(res => {
-      var list = res.data;
-      this.setData({
-        list
-      })
-    })
-  },
-  onPullDownRefresh() {
-    // wx.startPullDownRefresh({
-    //   success() {
-    //     wx.stopPullDownRefresh()
-    //   }
-    // })
   }
 })

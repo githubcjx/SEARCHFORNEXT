@@ -5,7 +5,9 @@
     "pages/message/index",
     "pages/mine/index",
     "pages/house-release/index",
-    "pages/collection/index"
+    "pages/collection/index",
+    "pages/my-release/index",
+    "pages/record/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

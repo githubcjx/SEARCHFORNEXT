@@ -58,7 +58,21 @@
         </view>
         <view class="landlord bottom">
           <view class="notice_title">房东信息</view>
-          <view>{{houseInfo.landlord[0]}}{{houseInfo.gender == 1 ? '先生' : '女士'}}</view>
+          <view class="landlord-info">
+            <view class="landlord-head">
+              <image src="{{houseInfo.avatarurl}}"></image>
+              <view class="landlord-name">{{houseInfo.landlord[0]}}{{houseInfo.gender == 1 ? '先生' : '女士'}}</view>
+            </view>
+          </view>
+          <view class="landlord-require">
+            <view class="triangle"></view>
+            <view class="req-text">
+              <view class="introduce">{{houseInfo.introduce}}</view>
+              <view class="requires" wx:if="{{ requires[0] != 0 }}">
+                <view class="req-item" wx:for="{{requires}}" wx:key="index">{{item}}</view>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
     </view>

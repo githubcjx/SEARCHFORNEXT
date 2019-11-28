@@ -1,17 +1,4 @@
 <view class="container">
-  <view class="header">
-    <view class="sort">
-      <view class="sort-item">
-        <image src="../../images/icon/整租.png"></image>
-        <view class="sort-text">整租</view>
-      </view>
-      <view class="sort-item">
-        <image src="../../images/icon/合租.png"></image>
-        <view class="sort-text">合租</view>
-      </view>
-    </view>
-  </view>
-  <view class="select-type"></view>
   <view class="content">
     <scroll-view scroll-y="{{true}}" style="height: 100%; background-color: #eee;" enable-back-to-top="{{true}}">
       <view class="house-list" wx:for="{{list}}" wx:key="{{item.house_id}}">
@@ -31,7 +18,7 @@
           </view>
         </view>
       </view>
-      <view wx:if="{{list.length == 0}}" class="nohouse">附近暂无房源</view>
+      <view wx:if="{{list.length == 0}}" class="nohouse">暂无浏览记录</view>
     </scroll-view>
   </view>
 </view>

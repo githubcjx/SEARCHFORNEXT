@@ -27,7 +27,8 @@ Page({
     },
     houseInfo: null,
     condition: [],
-    configures: []
+    configures: [],
+    requires: []
   },
   callLandlord: function(e) {
     wx.makePhoneCall({
@@ -55,15 +56,25 @@ Page({
       Toast.fail('请先登录');
     }
   },
+  islogin() {
+    var isLogin = wx.getStorageSync('openid');
+    if (isLogin) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   onLoad: function(options) {
     var house_id = +options.house_id;
     util.request(app.globalData.host + '/house/get', {
-      house_id
+      house_id,
+      islogin: this.islogin()
     }, 'POST').then(res => {
       console.log(res)
       var houseInfo = res.data;
       var condition = [];
       var configures = [];
+      var requires = houseInfo.require.split(',');
       var bright = houseInfo.bright.split(',');
       condition.push(houseInfo.decorate)
       if (bright + '') {
@@ -81,7 +92,8 @@ Page({
       this.setData({
         houseInfo,
         condition,
-        configures
+        configures,
+        requires
       })
     })
   }

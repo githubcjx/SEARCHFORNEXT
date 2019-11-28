@@ -1,5 +1,6 @@
 var app = getApp();
 var util = require('../../utils/util.js');
+var type = require('../../utils/type.js');
 import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 
 Page({
@@ -11,7 +12,7 @@ Page({
     rentType: 0,
     estateName: '',
     houseArea: '',
-    houseTypes: [],
+    houseTypes: type.houseType,
     directions: ['东', '西', '南', '北', '东南', '东北', '西南', '西北', '南北', '东西'],
     floors: [],
     parkings: ['无车位', '有车位'],
@@ -60,7 +61,7 @@ Page({
     ],
     name: '',
     phone: '',
-    bindType: 'cost',
+    bindType: '',
     result: ['a', 'b'],
     currentDate: new Date().getTime(),
     minDate: new Date().getTime(),
@@ -145,14 +146,9 @@ Page({
     textareaValue: ''
   },
   selectType(e) {
-    var isLogin = wx.getStorageSync('openid');
-    if (isLogin) {
-      this.setData({
-        rentType: e.currentTarget.dataset.type
-      })
-    } else {
-      Toast.fail('请先登录');
-    }
+    this.setData({
+      rentType: e.currentTarget.dataset.type
+    })
   },
   handleSelect(e) {
     console.log(e.currentTarget.dataset.type)
@@ -395,18 +391,7 @@ Page({
     for (let i = 1; i < 100; i++) {
       floors.push(i + '层');
     }
-    var houseTypes = {
-      province_list: {},
-      city_list: {},
-      county_list: {}
-    };
-    for (let i = 0; i < 10; i++) {
-      houseTypes.province_list['1' + i + '110' + i] = i + '室';
-      houseTypes.city_list['1' + i + '1' + i + '0' + i] = i + '厅';
-      houseTypes.county_list['11110' + i] = i + '卫';
-    }
     this.setData({
-      houseTypes,
       floors
     })
   },

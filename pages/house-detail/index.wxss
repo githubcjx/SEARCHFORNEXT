@@ -113,3 +113,57 @@
 .liking {
   color: #f00;
 }
+
+.landlord-info {
+  width: 100%;
+}
+.landlord-info .landlord-head image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+.landlord-info .landlord-head .landlord-name {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+}
+.landlord-require .triangle {
+  height: 0;
+  width: 0;
+  border-bottom: 20rpx solid rgb(245, 245, 245);
+  border-top: 20rpx solid transparent;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  margin-left: 60rpx;
+}
+.landlord-require .req-text {
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgb(245, 245, 245);
+  padding: 20rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+.landlord-require .req-text .introduce {
+  margin: 10rpx;
+  color: rgba(0, 0, 0, 0.616);
+  font-size: 26rpx;
+}
+.requires {
+  margin-top: 30rpx;
+}
+.requires .req-item {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  border: 1px solid #ddd;
+  border-top-left-radius: 20% 50%;
+  border-top-right-radius: 20% 50%;
+  border-bottom-right-radius: 20% 50%;
+  border-bottom-left-radius: 20% 50%;
+  font-size: 24rpx;
+  margin: 0 10rpx;
+  color: rgba(0, 0, 0, 0.616);
+}

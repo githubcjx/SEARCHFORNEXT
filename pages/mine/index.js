@@ -46,20 +46,45 @@ Page({
       })
     }
   },
+  islogin() {
+    var isLogin = wx.getStorageSync('openid');
+    if (isLogin) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   onMyCollection() {
+    if (this.islogin()) {
+      wx.navigateTo({
+        url: '../collection/index'
+      })
+    } else {
+      Toast.fail('请先登录');
+    }
+  },
+  onRecord() {
     wx.navigateTo({
-      url: '../collection/index'
+      url: '../record/index'
     })
   },
-  onMyRelease: function () {
-    // wx.navigateTo({
-    //   url: '../house-release/index'
-    // })
+  onMyRelease: function() {
+    if (this.islogin()) {
+      wx.navigateTo({
+        url: '../my-release/index'
+      })
+    } else {
+      Toast.fail('请先登录');
+    }
   },
   onRelease: function() {
-    wx.navigateTo({
-      url: '../house-release/index'
-    })
+    if (this.islogin()) {
+      wx.navigateTo({
+        url: '../house-release/index'
+      })
+    } else {
+      Toast.fail('请先登录');
+    }
   },
   logout: function() {
     this.setData({
